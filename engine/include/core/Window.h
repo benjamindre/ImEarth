@@ -6,6 +6,7 @@ class Window
 {
 public:
 
+    void Render();
 private:
 
 };
