@@ -31,12 +31,7 @@ Application::Application(const ProgramInfo& programInfo)
 
 Application::~Application() 
 {
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
-
-    glfwDestroyWindow(m_GLFWWindow);
-    glfwTerminate();
+    ShuntDown();
 }
 
 void Application::Run() 
@@ -50,7 +45,6 @@ void Application::Run()
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        ImGui::ShowDemoWindow();
         m_Window.Render();
 
         ImGui::Render();
@@ -158,7 +152,12 @@ void Application::Init()
 
 void Application::ShuntDown()
 {
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
 
+    glfwDestroyWindow(m_GLFWWindow);
+    glfwTerminate();
 }
 
 void Application::ViewportResizeCallback(GLFWwindow* window, int width, int height)
